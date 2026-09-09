@@ -1,0 +1,127 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: #f1f5f9; /* Soft Slate background */
+  color: #1e293b;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.app-container { max-width: 1300px; margin: 0 auto; padding: 2rem; }
+.app-header { margin-bottom: 2rem; text-align: center; }
+.app-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #0f172a; font-weight: 800; letter-spacing: -0.02em; }
+.app-header p { color: #64748b; line-height: 1.6; font-size: 1.1rem; }
+
+/* Panels */
+.panel {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+.panel-title { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; color: #475569; }
+
+/* Controls */
+.controls-panel { margin-bottom: 2rem; }
+.toggles-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem; margin-bottom: 1.5rem;
+}
+.toggle-wrapper { display: flex; align-items: flex-start; gap: 1rem; }
+.toggle-btn {
+  position: relative; width: 3rem; height: 1.5rem; background-color: #cbd5e1;
+  border-radius: 9999px; border: none; cursor: pointer; transition: 0.3s; flex-shrink: 0;
+}
+.toggle-btn.active { background-color: #6366f1; }
+.toggle-circle {
+  position: absolute; top: 3px; left: 3px; width: 1.125rem; height: 1.125rem;
+  background-color: white; border-radius: 50%; transition: 0.3s;
+}
+.toggle-circle.active { transform: translateX(1.5rem); }
+.toggle-label { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; color: #0f172a; }
+.toggle-desc { font-size: 0.8rem; color: #64748b; line-height: 1.4; }
+
+/* Form Elements */
+.add-event-form { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+.form-input, .form-select {
+  padding: 0.5rem 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem;
+  font-size: 0.875rem; background: #f8fafc; color: #334155; outline: none;
+}
+.form-input:focus, .form-select:focus { border-color: #6366f1; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2); }
+.btn-primary {
+  background: #6366f1; color: white; border: none; padding: 0.5rem 1rem;
+  border-radius: 0.5rem; font-weight: 600; cursor: pointer; font-size: 0.875rem; transition: 0.2s;
+}
+.btn-primary:hover { background: #4f46e5; }
+
+.controls-footer {
+  border-top: 1px solid #e2e8f0; padding-top: 1.5rem; display: flex;
+  justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-actions { display: flex; align-items: center; gap: 1rem; }
+.clock-tick { font-size: 0.8rem; font-family: monospace; background: #e0e7ff; color: #4338ca; padding: 0.3rem 0.6rem; border-radius: 0.5rem; font-weight: bold; }
+.reset-btn { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; font-size: 0.875rem; transition: 0.2s; font-weight: 500; }
+.reset-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+/* Layout */
+.main-layout { display: flex; flex-direction: column; gap: 1.5rem; }
+@media (min-width: 1024px) { .main-layout { flex-direction: row; align-items: flex-start; } }
+
+/* Calendar */
+.calendar-panel { flex-grow: 1; overflow-x: auto; }
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; min-width: 700px; }
+.legend { display: flex; gap: 0.75rem; }
+.legend-tag { font-size: 0.75rem; padding: 0.3rem 0.8rem; border-radius: 9999px; font-weight: 600; border: 1px solid transparent; }
+.tag-meeting { background: #e0e7ff; color: #4338ca; border-color: #c7d2fe; }
+.tag-deadline { background: #fee2e2; color: #b91c1c; border-color: #fecaca; }
+.tag-focus { background: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+.tag-personal { background: #ffedd5; color: #c2410c; border-color: #fed7aa; }
+
+.calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(110px, 1fr)); gap: 1rem; min-width: 700px; }
+.day-column { min-height: 450px; border-top: 3px solid #e2e8f0; padding-top: 1rem; transition: background 0.2s; }
+.day-name { color: #64748b; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 0.05em; }
+
+/* Event Cards */
+.event-card {
+  background-color: #ffffff; border: 1px solid #e2e8f0; padding: 0.8rem;
+  border-radius: 0.5rem; margin-bottom: 0.75rem; cursor: grab;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: transform 0.1s, box-shadow 0.1s; border-left: 5px solid transparent;
+}
+.event-card:active { cursor: grabbing; transform: scale(0.98); }
+.event-card:hover { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+.type-meeting { border-left-color: #6366f1; }
+.type-deadline { border-left-color: #ef4444; }
+.type-focus { border-left-color: #22c55e; }
+.type-personal { border-left-color: #f97316; }
+
+.event-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem; }
+.event-time { color: #64748b; font-size: 0.75rem; font-weight: 600; }
+.delete-btn { background: none; border: none; color: #94a3b8; font-size: 1.2rem; line-height: 0.5; cursor: pointer; padding: 0 2px; }
+.delete-btn:hover { color: #ef4444; }
+.event-title { font-size: 0.9rem; font-weight: 600; color: #1e293b; line-height: 1.2; }
+
+/* The Flashing Animation to visibly show re-renders */
+@keyframes flash {
+  0% { background-color: #c084fc; border-color: #a855f7; transform: scale(1.05); }
+  100% { background-color: #ffffff; border-color: #e2e8f0; transform: scale(1); }
+}
+.flash-render { animation: flash 0.6s ease-out; }
+
+/* Render Monitor */
+.render-monitor { width: 100%; background: #f8fafc; }
+@media (min-width: 1024px) { .render-monitor { width: 340px; flex-shrink: 0; } }
+
+.monitor-stats { display: flex; justify-content: space-between; align-items: flex-end; margin: 1.5rem 0; }
+.stat-box.right { text-align: right; }
+.text-accent { color: #6366f1; }
+.stat-number { font-size: 2rem; font-weight: 800; line-height: 1; }
+.stat-box.right .stat-number { font-size: 1.5rem; }
+.stat-label { color: #64748b; font-size: 0.8rem; margin-top: 0.4rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.progress-list { display: flex; flex-direction: column; gap: 0.85rem; }
+.progress-row { display: flex; align-items: center; font-size: 0.8rem; font-weight: 500; }
+.progress-title { color: #475569; width: 8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 0.5rem; }
+.progress-track { flex-grow: 1; background-color: #e2e8f0; height: 0.4rem; border-radius: 9999px; position: relative; overflow: hidden; margin: 0 0.5rem; }
+.progress-bar { background-color: #6366f1; position: absolute; top: 0; left: 0; height: 100%; transition: width 0.3s ease; }
+.progress-count { color: #0f172a; width: 1.5rem; text-align: right; font-weight: 700; }
